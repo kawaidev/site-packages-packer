@@ -72,8 +72,8 @@ def archive_src_files(archive_file_name, record_path_list):
                                 os.path.join(site_package, line)
                             )
                             dest_file = os.path.join(root_dir_path, line)
-                            os.makedirs(os.path.dirname(dest_file), exist_ok=True)
                             try:
+                                os.makedirs(os.path.dirname(dest_file), exist_ok=True)
                                 shutil.copy(original_file, dest_file)
                             except Exception:
                                 pass
