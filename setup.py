@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="site-packages-packer",
-    version="0.0.4",
+    version="0.0.5",
     description="Pack selected packages from site-packages and output license file",
     author="kawaidev",
     author_email="kawai.dev.py@gmail.com",
