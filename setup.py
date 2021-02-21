@@ -15,4 +15,5 @@ setup(
         ]
     },
     license="MIT",
+    python_requires=">=3.7",
 )

@@ -5,9 +5,6 @@ import shutil
 import tempfile
 import os
 from importlib import import_module
-from typing import List, TypedDict
-
-PackagePathItem = TypedDict("PackagePathItem", {"name": str, "path": str})
 
 
 def parse_packages(target_packages=[]):
@@ -19,14 +16,14 @@ def parse_packages(target_packages=[]):
     packages_list_json = json.loads(packages_list_json_str)
     res_list = [o for o in packages_list_json if o["Name"] in target_packages]
 
-    license_text_list: List[str] = []
-    package_path_list: List[PackagePathItem] = []
+    license_text_list = []
+    package_path_list = []
 
     for data in res_list:
-        package_name: str = data["Name"]
+        package_name = data["Name"]
         try:
             package_path = import_module(package_name).__path__[0]
-            item: PackagePathItem = {"name": package_name, "path": package_path}
+            item = {"name": package_name, "path": package_path}
             package_path_list.append(item)
             license_text_list.append(
                 "\n".join(
