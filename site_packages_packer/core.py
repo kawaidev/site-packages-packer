@@ -73,7 +73,10 @@ def archive_src_files(archive_file_name, record_path_list):
                             )
                             dest_file = os.path.join(root_dir_path, line)
                             os.makedirs(os.path.dirname(dest_file), exist_ok=True)
-                            shutil.copy(original_file, dest_file)
+                            try:
+                                shutil.copy(original_file, dest_file)
+                            except Exception:
+                                pass
 
             archive_name, archive_extension = os.path.splitext(archive_file_name)
             archive_extension = archive_extension.strip(".")
