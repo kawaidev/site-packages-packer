@@ -18,26 +18,22 @@ def parse_packages(target_packages=[]):
 
     license_text_list = []
     record_path_list = []
-
     for data in res_list:
         package_name = data["Name"]
         try:
-            # package_path = import_module(package_name).__path__[0]
             lisence_file = data["LicenseFile"]
             dist_info = os.path.dirname(lisence_file)
             record_file = os.path.join(dist_info, "RECORD")
             if os.path.exists(record_file):
+                license_text = ["-" * 80] if len(record_path_list) > 0 else []
+                license_text += [
+                    package_name,
+                    data["Version"],
+                    data["License"],
+                    data["LicenseText"],
+                ]
+                license_text_list.append("\n".join(license_text))
                 record_path_list.append(record_file)
-                license_text_list.append(
-                    "\n".join(
-                        [
-                            package_name,
-                            data["Version"],
-                            data["License"],
-                            data["LicenseText"],
-                        ]
-                    )
-                )
         except Exception:
             print("You don't have %s package." % package_name)
 
